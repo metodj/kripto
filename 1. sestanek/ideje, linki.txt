@@ -1,0 +1,21 @@
+volume per currencies:
+https://coinmarketcap.com/currencies/volume/24-hour/
+
+volume per exchanges:
+https://coinmarketcap.com/exchanges/volume/24-hour/
+
+osnovna stran coinmarketcap (primer ETHEREUMA):
+https://coinmarketcap.com/currencies/ethereum/#markets
+
+DATA VISUALIZATION:
+
+graph-tool (python library):
+https://stackoverflow.com/questions/13974643/graph-tool-draw-text-on-edges
+https://graph-tool.skewed.de/static/doc/index.html
+
+plotly (python library)
+https://plot.ly/python/3d-network-graph/
+
+gephi (ni knjižnica, ampak prav program):
+http://www.martingrandjean.ch/introduction-to-network-visualization-gephi/
+

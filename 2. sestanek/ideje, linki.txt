@@ -1,0 +1,14 @@
+https://www.quora.com/How-does-a-Bitcoin-exchange-work-1
+
+BITFINEX:
+https://www.bfxdata.com/orderbooks/btcusd
+https://bfxdata.com/
+
+BITTREx:
+https://bittrex.com/Home/Api
+
+KRAKEN:
+https://www.kraken.com/help/api#get-server-time
+
+BITSTAMP:
+https://www.bitstamp.net/api/
