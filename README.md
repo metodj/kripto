@@ -1,2 +1,2 @@
 # kripto
-Visualisation of global cryptocurrency market
+Visualization of global cryptocurrency market
