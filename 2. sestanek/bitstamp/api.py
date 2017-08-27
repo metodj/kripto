@@ -36,5 +36,14 @@ def zajemi(par):
     rez = 'Par ' + par + ' zajet.'
     return rez
 
+#par = tBTCUSD
+def zajemiBitfinex(par):
+    url = "https://api.bitfinex.com/v2/trades/" + par
+    json_obj = urllib2.urlopen(url)
+    data = json.load(json_obj)
+    ime_csv = par + '.csv'
+    zapisi_tabelo(data, ['MTS', 'AMOUNT', 'PRICE', 'RATE', 'PERIOD'], ime_csv)
+    rez = 'Par ' + par + ' zajet.'
+    return rez
 
 #zapisi_tabelo(data, ['date', 'tid', 'price', 'amount', 'type'], 'bitstamp.csv' )
