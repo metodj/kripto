@@ -38,7 +38,7 @@ def zajemi(par):
 
 #par = tBTCUSD
 def zajemiBitfinex(par):
-    url = "https://api.bitfinex.com/v2/trades/" + par
+    url = "https://api.bitfinex.com/v2/trades/" + par + '/hist'
     json_obj = urllib2.urlopen(url)
     data = json.load(json_obj)
     ime_csv = par + '.csv'
