@@ -27,8 +27,8 @@ def zapisi_tabelo(slovarji, imena_polj, ime_datoteke):
         for slovar in slovarji:
             writer.writerow(slovar)
 
-def zajemi(par):
-    url = 'https://www.bitstamp.net/api/v2/transactions/' + par + '/?time=day'
+def zajemi(par, time='day'):
+    url = 'https://www.bitstamp.net/api/v2/transactions/' + par + '/?time=' + time
     json_obj = urllib2.urlopen(url)
     data = json.load(json_obj)
     ime_csv = par + '.csv'
@@ -47,3 +47,36 @@ def zajemiBitfinex(par):
     return rez
 
 #zapisi_tabelo(data, ['date', 'tid', 'price', 'amount', 'type'], 'bitstamp.csv' )
+
+
+
+#funckiji za zajem order booka z bitstamp.com
+#type: 0 - bids, 1 - asks
+
+def zapisi_tabelo_order(slovarji, imena_polj, ime_datoteke):
+    pripravi_imenik(ime_datoteke)
+    with open(ime_datoteke, 'w') as csv_dat:
+        writer = csv.DictWriter(csv_dat, fieldnames=imena_polj)
+        writer.writeheader()
+        bids, asks = slovarji['bids'], slovarji['asks']
+        for bid in bids:
+            tmp = dict()
+            tmp['price'] = bid[0]
+            tmp['amount'] = bid[1]
+            tmp['type'] = 0
+            writer.writerow(tmp)
+        for ask in asks:
+            tmp = dict()
+            tmp['price'] = ask[0]
+            tmp['amount'] = ask[1]
+            tmp['type'] = 1
+            writer.writerow(tmp)
+
+def zajemi_order(par):
+    url = 'https://www.bitstamp.net/api/v2/order_book/' + par + '/'
+    json_obj = urllib2.urlopen(url)
+    data = json.load(json_obj)
+    ime_csv = par + '_order.csv'
+    zapisi_tabelo_order(data, ['price', 'amount', 'type'], ime_csv)
+    rez = 'Par ' + par + ' order zajet.'
+    return rez
