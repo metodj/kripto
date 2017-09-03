@@ -18,21 +18,23 @@ def pripravi_imenik(ime_datoteke):
     if imenik:
         os.makedirs(imenik, exist_ok=True)
 
-def zapisi_tabelo(slovarji, imena_polj, ime_datoteke):
+def zapisi_tabelo(slovarji, imena_polj, ime_datoteke, orders):
     '''Iz seznama slovarjev ustvari CSV datoteko z glavo.'''
     pripravi_imenik(ime_datoteke)
+    if orders:
+        ime_datoteke = 'orders/' + ime_datoteke
     with open(ime_datoteke, 'w') as csv_dat:
         writer = csv.DictWriter(csv_dat, fieldnames=imena_polj)
         writer.writeheader()
         for slovar in slovarji:
             writer.writerow(slovar)
 
-def zajemi(par, time='day'):
+def zajemi(par, time='day', orders=False):
     url = 'https://www.bitstamp.net/api/v2/transactions/' + par + '/?time=' + time
     json_obj = urllib2.urlopen(url)
     data = json.load(json_obj)
     ime_csv = par + '.csv'
-    zapisi_tabelo(data, ['date', 'tid', 'price', 'amount', 'type'], ime_csv)
+    zapisi_tabelo(data, ['date', 'tid', 'price', 'amount', 'type'], ime_csv, orders)
     rez = 'Par ' + par + ' zajet.'
     return rez
 
@@ -50,11 +52,12 @@ def zajemiBitfinex(par):
 
 
 
-#funckiji za zajem order booka z bitstamp.com
+#funckije za zajem order booka z bitstamp.com
 #type: 0 - bids, 1 - asks
 
 def zapisi_tabelo_order(slovarji, imena_polj, ime_datoteke):
     pripravi_imenik(ime_datoteke)
+    ime_datoteke = 'orders/' + ime_datoteke
     with open(ime_datoteke, 'w') as csv_dat:
         writer = csv.DictWriter(csv_dat, fieldnames=imena_polj)
         writer.writeheader()
@@ -72,6 +75,7 @@ def zapisi_tabelo_order(slovarji, imena_polj, ime_datoteke):
             tmp['type'] = 1
             writer.writerow(tmp)
 
+
 def zajemi_order(par):
     url = 'https://www.bitstamp.net/api/v2/order_book/' + par + '/'
     json_obj = urllib2.urlopen(url)
@@ -80,3 +84,5 @@ def zajemi_order(par):
     zapisi_tabelo_order(data, ['price', 'amount', 'type'], ime_csv)
     rez = 'Par ' + par + ' order zajet.'
     return rez
+
+
