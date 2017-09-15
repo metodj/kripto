@@ -4,9 +4,13 @@ import csv
 import os
 import sys
 import datetime
+#import pandas as pd
+#import numpy as np
+#from forex_python.converter import CurrencyRates
+#from forex_python.bitcoin import BtcConverter
 
 datum = str(datetime.datetime.now())[:10]
-os.mkdir(datum)
+#os.mkdir(datum)
 
 def pripravi_imenik(ime_datoteke):
     '''Ce se ne obstaja, pripravi prazen imenik za dano datoteko.'''
@@ -39,4 +43,6 @@ def zajemi(par, time='day', orders=False):
 
 pari = ['btcusd', 'btceur', 'eurusd', 'xrpusd', 'xrpeur', 'xrpbtc', 'ltcusd', 'ltceur', 'ltcbtc', 'ethusd', 'etheur', 'ethbtc']
 for par in pari:
-	zajemi(par)
+    zajemi(par)
+
+	

@@ -23,6 +23,15 @@ def zajemiSNC():
     zapisi_tabelo_snc(data, polja, 'SNC.csv')
     return "Oujeaa"
 
+def zajemiOAX():
+    url = 'http://api.etherscan.io/api?module=account&action=txlist&address=0x701C244b988a513c945973dEFA05de933b23Fe1D&apikey=BAVKRF75U3XC7I7JN3NPR2BWHGACDIH51X'
+    json_obj = urllib2.urlopen(url)
+    data = json.load(json_obj)
+    data = data['result']
+    polja = ['blockNumber', 'timeStamp', 'from', 'to', 'value']
+    zapisi_tabelo_snc(data, polja, 'OAX.csv')
+    return "Oujeaa"
+
 def pripravi_imenik(ime_datoteke):
     '''Ce se ne obstaja, pripravi prazen imenik za dano datoteko.'''
     imenik = os.path.dirname(ime_datoteke)
