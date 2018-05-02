@@ -1,2 +1,0 @@
-- OAX preveriti verodostojnost in smiselnost zajetih podatkov
-- pri zajemu za Bitstamp napisati funkcijo (oz združiti napisano kodo v funkcijo) za zgeneriranje TIDY tabele
